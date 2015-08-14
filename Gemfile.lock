@@ -1,0 +1,21 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    json (1.8.3)
+    puma (2.12.3)
+    rack (1.6.4)
+    rethinkdb (2.1.0)
+      json
+    thor (0.19.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  puma (~> 2.12.3)
+  rack (~> 1.6.4)
+  rethinkdb (~> 2.1.0)
+  thor (~> 0.19.1)
+
+BUNDLED WITH
+   1.10.6
