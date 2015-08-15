@@ -1,4 +1,8 @@
-# RethinkDB based Tree Wiki
+# Selva
+
+[![Code Climate](https://codeclimate.com/github/rolfvandekrol/selva/badges/gpa.svg)](https://codeclimate.com/github/rolfvandekrol/selva)
+
+Selva is a RethinkDB based Tree Wiki.
 
 What's in a name? Selva means tree in Spanish. No, I'm not Spanish at all, but I
 like the name.
