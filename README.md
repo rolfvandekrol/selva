@@ -30,7 +30,7 @@ performance penalty.
 
 ### CLI
 
-Written with Thor. Usage
+Written with Thor. Usage:
 
 ```
 ./selva
