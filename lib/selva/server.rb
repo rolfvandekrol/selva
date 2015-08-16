@@ -46,6 +46,7 @@ module Selva
         server = self
 
         builder.instance_eval do
+          use Selva::SocketMiddleware, server
 
           use Rack::ContentLength
           run Selva::Router.new
