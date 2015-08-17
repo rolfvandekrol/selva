@@ -5,3 +5,5 @@
 .rbenv-gemsets
 
 config/database.yml
+
+log/*.log
