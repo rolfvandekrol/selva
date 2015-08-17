@@ -16,9 +16,11 @@ module Selva
     attr_reader :logger, :app
 
     def initialize(options = {})
-      run_callbacks :initialize do
-        @options = options.reverse_merge(environment: :development)
-        raise if @options[:root].nil?
+      @options = options.reverse_merge(environment: :development)
+      raise if @options[:root].nil?
+
+      protected_methods.grep(/^initialize_/).each do |method|
+        send(method)
       end
     end
 
@@ -40,7 +42,7 @@ module Selva
 
     protected
 
-      def build_app
+      def initialize_app
         builder = Rack::Builder.new
 
         if development?
@@ -62,7 +64,7 @@ module Selva
       end
       set_callback :initialize, :after, :build_app
 
-      def build_logger
+      def initialize_logger
         output = STDOUT
         output = File.join(root, 'log', "#{environment}.log") unless development?
 
