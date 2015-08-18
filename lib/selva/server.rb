@@ -1,4 +1,5 @@
 require 'rack'
+require 'rack/session/pool'
 
 require 'active_support/core_ext/hash/reverse_merge'
 
@@ -66,6 +67,11 @@ module Selva
         server = self
 
         builder.instance_eval do
+
+          # Add the session handler. We will probably want to switch this to a
+          # memcached handler for production use, but for development the pool
+          # is probably fine.
+          use Rack::Session::Pool, :expire_after => 2592000
 
           # Initialize the websocket connection here. All code below this line
           # will only be used to server the client side code (HTML and assets).

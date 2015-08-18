@@ -11,6 +11,9 @@ module Selva
     end
 
     def call(env)
+      # Force session committing
+      env['rack.session']['init'] = true
+
       if Faye::WebSocket.websocket?(env)
         ws = Faye::WebSocket.new(env, nil, {ping: KEEPALIVE_TIME })
         ws.on :open do |event|
