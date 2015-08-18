@@ -1,8 +1,11 @@
+# We are using the faye-websocket library to perform the http to websocket
+# upgrade and to implement the websocket communication.
 require 'faye/websocket'
 
 module Selva
   class SocketMiddleware
-    KEEPALIVE_TIME = 15 # in seconds
+    # We keep the socket connection alive by sending a ping every 15 seconds.
+    KEEPALIVE_TIME = 15
 
     def initialize(app, server)
       @app     = app
@@ -11,11 +14,15 @@ module Selva
     end
 
     def call(env)
-      # Force session committing
+      # Write to the session so, the cookie will be sent. This way, we make sure
+      # that when we write in the session from the websocket, this will be
+      # saveable.
       env['rack.session']['init'] = true
 
+      # If this is a http to websocket upgrade, initialize a websocket.
       if Faye::WebSocket.websocket?(env)
         ws = Faye::WebSocket.new(env, nil, {ping: KEEPALIVE_TIME })
+
         ws.on :open do |event|
           logger.tagged('Socket') { logger.info "Open #{ws.object_id}" }
           @clients << ws
@@ -33,9 +40,10 @@ module Selva
           ws = nil
         end
 
-        # Return async Rack response
+        # Return async Rack response to acknowledge the websocket upgrade.
         ws.rack_response
       else
+        # Pass through to the HTTP part of the Rack application.
         @app.call(env)
       end
     end

@@ -11,9 +11,13 @@ module Selva
     attr_reader :logger, :app
 
     def initialize(options = {})
+      # Setup the options
       @options = options.reverse_merge(environment: :development)
       raise if @options[:root].nil?
 
+      # Run all protected initialize_* methods. We need to initialize all these
+      # objects explicitly at the initialization of the object, instead of lazy
+      # loading them, because we need to be thread safe here.
       protected_methods.grep(/^initialize_/).each do |method|
         send(method)
       end
@@ -83,6 +87,8 @@ module Selva
       end
 
       def initialize_logger
+        # Use STDOUT for the logger output on development. On all other
+        # environments, use log/[ENVIRONMENT].log.
         output = STDOUT
         output = File.join(root, 'log', "#{environment}.log") unless development?
 
