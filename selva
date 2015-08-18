@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# Boot the application
 require File.expand_path('lib/boot.rb', File.dirname(__FILE__))
 
+# Run the Thor CLI application for Selva.
 Selva::CLI.start
