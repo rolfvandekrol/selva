@@ -43,19 +43,38 @@ module Selva
     protected
 
       def initialize_app
+        # Build the Rack app here. The request first hits the first middleware
+        # and then down the list of middlewares until it reaches the app. The
+        # response goes the other way around, so starts at the last middleware
+        # and finishes with the first. 
+        # Notice that the bulk of the client - server communication will not be
+        # using this Rack app, but will be using the websocket connection that
+        # is initialized in Selva::SocketMiddleware.
         builder = Rack::Builder.new
 
+        # First we make sure the register the Rack::Reloader middleware. This
+        # reloads all changed required files. Works pretty well with reloading
+        # the app. Some things don't get reloaded, but I think those are the
+        # least moving parts, so that won't be very annoying.
         if development?
           builder.instance_eval do
             use Rack::Reloader, 0
           end
         end
 
+        # Make sure we can access the server from the builder instance
         server = self
 
         builder.instance_eval do
+
+          # Initialize the websocket connection here. All code below this line
+          # will only be used to server the client side code (HTML and assets).
+          # The Websocket negotiation will be answered from this middelware 
+          # class and will not touch the middelware defined below, nor the
+          # application.
           use Selva::SocketMiddleware, server
 
+          # Initialize the HTTP application
           use Rack::ContentLength
           run Selva::Router.new
         end
