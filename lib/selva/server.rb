@@ -6,14 +6,8 @@ require 'active_support/core_ext/hash/reverse_merge'
 require 'active_support/logger'
 require 'active_support/tagged_logging'
 
-require 'active_support/callbacks'
-
-
 module Selva
   class Server
-    include ActiveSupport::Callbacks
-    define_callbacks :initialize
-
     attr_reader :logger, :app
 
     def initialize(options = {})
@@ -87,7 +81,6 @@ module Selva
 
         @app = builder.to_app
       end
-      set_callback :initialize, :after, :build_app
 
       def initialize_logger
         output = STDOUT
@@ -95,6 +88,5 @@ module Selva
 
         @logger = ActiveSupport::TaggedLogging.new(Logger.new(output))
       end
-      set_callback :initialize, :after, :build_logger
   end
 end
