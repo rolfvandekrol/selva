@@ -80,7 +80,7 @@ module Selva
 
           # Initialize the HTTP application
           use Rack::ContentLength
-          run Selva::StaticRouter.new
+          run Selva::StaticRouter.new(server)
         end
 
         @app = builder.to_app

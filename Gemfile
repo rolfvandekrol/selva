@@ -11,3 +11,5 @@ gem 'rack', '~> 1.6.4'
 gem 'activesupport', '~> 4.2.3'
 
 gem 'faye-websocket', '~> 0.10.0'
+
+gem 'sprockets', '~> 3.3.1'

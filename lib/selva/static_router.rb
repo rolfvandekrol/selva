@@ -1,4 +1,5 @@
 require 'rack/request'
+require 'sprockets'
 
 module Selva
   class StaticRouter
@@ -14,6 +15,15 @@ module Selva
       # User generated pages are located on /u/.
       /^\/u\// => :serve_page,
     }
+
+    attr_reader :server, :sprockets_environment
+
+    def initialize(server)
+      @server = server
+
+      @sprockets_environment = Sprockets::Environment.new(server.root)
+      @sprockets_environment.append_path('assets')
+    end
 
     def call(env)
       # We use the Rack::Request wrapper around the env, to access the request
@@ -37,7 +47,32 @@ module Selva
     end
 
     def serve_asset(request)
-      [200, {'Content-Type' => 'text/html'}, ["<html><body><pre>Asset: #{request.path_info}</pre><body></html>"]]
+      path = Rack::Utils.unescape(request.path_info.to_s.sub(/^\/a\//, ''))
+      asset = sprockets_environment[path]
+
+      return serve_not_found(request) if asset.nil?
+
+      headers = {}
+
+      # Set content length header
+      headers["Content-Length"] = asset.length.to_s
+
+      # Set content type header
+      if type = asset.content_type
+        # Set charset param for text/* mime types
+        if type.start_with?("text/") && asset.charset
+          type += "; charset=#{asset.charset}"
+        end
+        headers["Content-Type"] = type
+      end
+
+      # Set caching headers
+      headers["Cache-Control"] = "public"
+      headers["ETag"]          = %("#{asset.etag}")
+      headers["Cache-Control"] << ", must-revalidate"
+      headers["Vary"] = "Accept-Encoding"
+
+      [ 200, headers, asset ]
     end
 
     def serve_not_found(request)
