@@ -24,7 +24,8 @@ module Selva
       @server = server
 
       @sprockets_environment = Sprockets::Environment.new(server.root)
-      @sprockets_environment.append_path('assets')
+      @sprockets_environment.append_path('assets/javascripts')
+      @sprockets_environment.append_path('assets/stylesheets')
       @sprockets_environment.append_path('vendor/react')
       @sprockets_environment.append_path('vendor/font-awesome/fonts')
 
@@ -48,7 +49,21 @@ module Selva
     end
 
     def serve_page(request)
-      [200, {'Content-Type' => 'text/html'}, ["<html><body><pre>Page: #{request.path_info}</pre><body></html>"]]
+      [200, {'Content-Type' => 'text/html'}, [page_html]]
+    end
+
+    def page_html
+%{<!doctype html>
+<html>
+  <head>
+    <title>Selva</title>
+    <link rel="stylesheet" href="/a/application.css" type="text/css">
+  </head>
+  <body>
+    <div id="wrapper"></div>
+    <script src="/a/application.js"></script>
+  </body>
+</html>}
     end
 
     def serve_asset(request)
