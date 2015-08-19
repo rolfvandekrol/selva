@@ -1,7 +1,47 @@
+require 'rack/request'
+
 module Selva
   class StaticRouter
+    # We route the request using regular expressions.
+    REQUEST_MAPPING = {
+      # Serve the homepage as a normal page
+      /^\/$/ => :serve_page,
+
+      # All assets are located on /a/. For safety, we only accept dots in the
+      # path when it is surrounded by letters, numbers or underscores.
+      /^\/a(\/([a-z0-9\-]|[a-z0-9\-]\.[a-z0-9\-])+)+$/ => :serve_asset,
+
+      # User generated pages are located on /u/.
+      /^\/u\// => :serve_page,
+    }
+
     def call(env)
-      [200, {'Content-Type' => 'text/html'}, ["<html><body><pre>#{env['rack.session'].instance_variable_get('@store').class.name}</pre><body></html>"]]
+      # We use the Rack::Request wrapper around the env, to access the request
+      # parameters a little easier.
+      request = Rack::Request.new(env)
+
+      # Figure out which route we should use to serve the request.
+      route = REQUEST_MAPPING.find do |regexp, callback|
+        regexp.match request.path_info
+      end
+
+      # Serve a 404 when no route is found.
+      return serve_not_found(request) if route.nil?
+
+      # Serve from the callback that belongs to the found route.
+      send(route[1], request)
+    end
+
+    def serve_page(request)
+      [200, {'Content-Type' => 'text/html'}, ["<html><body><pre>Page: #{request.path_info}</pre><body></html>"]]
+    end
+
+    def serve_asset(request)
+      [200, {'Content-Type' => 'text/html'}, ["<html><body><pre>Asset: #{request.path_info}</pre><body></html>"]]
+    end
+
+    def serve_not_found(request)
+      [404, {'Content-Type' => 'text/html'}, ["<html><body><h1>Not found</h1><body></html>"]]
     end
   end
 end
