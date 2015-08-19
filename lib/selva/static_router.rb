@@ -25,6 +25,9 @@ module Selva
 
       @sprockets_environment = Sprockets::Environment.new(server.root)
       @sprockets_environment.append_path('assets')
+      @sprockets_environment.append_path('vendor/react')
+      @sprockets_environment.append_path('vendor/font-awesome/fonts')
+
     end
 
     def call(env)
