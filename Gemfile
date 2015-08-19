@@ -13,3 +13,5 @@ gem 'activesupport', '~> 4.2.3'
 gem 'faye-websocket', '~> 0.10.0'
 
 gem 'sprockets', '~> 3.3.1'
+
+gem 'react-jsx-sprockets', '~> 0.2.2'
