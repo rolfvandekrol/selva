@@ -62,7 +62,7 @@ module Selva
   </head>
   <body>
     <div id="wrapper"></div>
-    <script src="/a/application.js"></script>
+    <script async src="/a/application.js"></script>
   </body>
 </html>}
     end
