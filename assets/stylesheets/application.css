@@ -3,6 +3,13 @@
  *= require icons.css
  */
 
+html {
+  box-sizing: border-box;
+}
+* {
+  box-sizing: inherit;
+}
+
 body {
   
 }
@@ -14,4 +21,11 @@ body {
   left: 0;
   top: 0;
   bottom: 0;
+}
+
+.header {
+  position: fixed;
+  left: 220px;
+  right: 0;
+  height: 30px;
 }

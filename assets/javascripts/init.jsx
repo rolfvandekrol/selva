@@ -1,5 +1,5 @@
 
 React.render(
-  <Selva.Sidebar />,
+  <Selva.Application />,
   document.getElementById('wrapper')
 );
