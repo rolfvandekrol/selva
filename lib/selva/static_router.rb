@@ -2,6 +2,7 @@ require 'rack/request'
 
 require 'sprockets'
 require 'react-jsx-sprockets'
+require 'sass'
 
 module Selva
   class StaticRouter

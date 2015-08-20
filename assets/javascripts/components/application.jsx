@@ -4,6 +4,7 @@ Selva.Application = React.createClass({
       <div className="application">
         <Selva.Sidebar />
         <Selva.Header />
+        <Selva.MainContent />
       </div>
     );
   }

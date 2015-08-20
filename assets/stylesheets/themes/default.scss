@@ -1,0 +1,54 @@
+
+$color-background: #f3f3f4;
+$color-sidebar: #2f4050;
+$color-border: #e7eaec;
+$color-white: #ffffff;
+
+$color-text: #676a6c;
+$color-text-sidebar: #dfe4ed;
+$color-text-light: mix($color-border, $color-text);
+
+body {
+  background: $color-sidebar;
+  color: $color-text;
+}
+
+.header {
+  border-bottom: 1px solid $color-border;
+  background: $color-background;
+}
+
+.sidebar {
+  background: $color-sidebar;
+  color: $color-text-sidebar;
+}
+
+.main-content {
+  background: $color-background;
+}
+
+.content-block {
+  background: $color-white;
+  border-top: 4px solid $color-border;
+}
+
+.header-search {
+  input {
+    color: $color-text;
+
+    &::-webkit-input-placeholder {
+      color: $color-text-light;
+    }
+    &:-moz-placeholder {
+      color: $color-text-light;
+      opacity: 1;
+    }
+    &::-moz-placeholder {
+      color: $color-text-light;
+      opacity: 1;
+    }
+    &:-ms-input-placeholder {
+      color: $color-text-light;
+    }
+  }
+}
