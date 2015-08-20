@@ -58,6 +58,7 @@ module Selva
   <head>
     <title>Selva</title>
     <link rel="stylesheet" href="/a/application.css" type="text/css">
+    <link rel="stylesheet" href="/a/themes/default.css" type="text/css">
   </head>
   <body>
     <div id="wrapper"></div>
