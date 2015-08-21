@@ -1,12 +1,13 @@
 
 define(
-  ['react', 'components/icon'],
-  function(React, Icon) {
+  ['react', 'components/icon', 'components/logo'],
+  function(React, Icon, Logo) {
     return React.createClass({
       render: function() {
         return (
           <div className="sidebar">
-            Hello, world! I am a Sidebar. <Icon icon="inbox" />
+            <p>Hello, world! I am a Sidebar. <Icon icon="inbox" /></p>
+            <Logo />
           </div>
         );
       }

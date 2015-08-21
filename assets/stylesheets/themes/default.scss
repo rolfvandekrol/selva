@@ -21,6 +21,12 @@ body {
 .sidebar {
   background: $color-sidebar;
   color: $color-text-sidebar;
+
+  .logo {
+    path {
+      fill: $color-text-sidebar;
+    }
+  }
 }
 
 .main-content {
