@@ -29,7 +29,7 @@ module Selva
       @sprockets_environment.append_path('assets/stylesheets')
       @sprockets_environment.append_path('vendor/react')
       @sprockets_environment.append_path('vendor/font-awesome/fonts')
-
+      @sprockets_environment.append_path('vendor/requirejs')
     end
 
     def call(env)
@@ -63,7 +63,7 @@ module Selva
   </head>
   <body>
     <div id="wrapper"></div>
-    <script async src="/a/application.js"></script>
+    <script data-main="/a/application.js" src="/a/require.js"></script>
   </body>
 </html>}
     end
