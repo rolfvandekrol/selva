@@ -80,6 +80,11 @@ module Selva
 
           # Initialize the HTTP application
           use Rack::ContentLength
+
+          map "/a" do
+            run Rack::File.new(File.join(server.root, "client/dist"))
+          end
+
           run Selva::StaticRouter.new(server)
         end
 

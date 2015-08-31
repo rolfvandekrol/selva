@@ -1,7 +1,6 @@
-/* 
- *= require normalize
- *= require icons.css
- */
+
+@import 'normalize.css';
+@import '../../vendor/font-awesome/css/font-awesome.css';
 
 html {
   box-sizing: border-box;

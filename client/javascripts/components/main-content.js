@@ -1,12 +1,11 @@
 
-define(
-  ['react'],
-  function(React) {
-    return React.createClass({
-      render: function() {
-        return (
+var React = require('react');
+
+module.exports = React.createClass({
+  render: function() {
+    return (
 <div className="main-content"><div className="content-block">
-        <p>
+    <p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit feugiat metus consectetur lobortis. Suspendisse ultricies risus nec ante vulputate lobortis. Quisque maximus, erat quis ornare scelerisque, ex sem porta purus, vitae viverra sapien ex sit amet eros. Proin dapibus eu est ac ultrices. Mauris dapibus quis diam eget euismod. Proin pulvinar volutpat nunc, in maximus ante dictum sit amet. Fusce ac finibus justo. Proin blandit sagittis nunc. Ut luctus erat nec ligula dictum, at semper sem dapibus. Mauris imperdiet gravida blandit. Pellentesque facilisis tempor tincidunt. Nam elementum at sem at convallis.
 </p>
 <p>
@@ -19,9 +18,7 @@ Fusce ac leo tellus. Vivamus porttitor elit nec mauris ultricies vulputate at sa
 Praesent porttitor leo finibus aliquet tempor. Mauris rutrum ac turpis nec pretium. Quisque suscipit elit eget nisi tristique vestibulum vitae vel sem. Ut blandit lacus et velit mattis accumsan. In gravida nunc ut nunc convallis tincidunt. Ut eget velit scelerisque, euismod odio in, hendrerit magna. Mauris commodo lobortis lorem vitae condimentum. Sed scelerisque luctus sapien, non molestie orci aliquet at. Vivamus porta lacus non libero lobortis placerat.
 </p>
 
-      </div></div>
-        );
-      }
-    });
+  </div></div>
+    );
   }
-);
+});

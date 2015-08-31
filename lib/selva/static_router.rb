@@ -58,12 +58,10 @@ module Selva
 <html>
   <head>
     <title>Selva</title>
-    <link rel="stylesheet" href="/a/application.css" type="text/css">
-    <link rel="stylesheet" href="/a/themes/default.css" type="text/css">
   </head>
   <body>
     <div id="wrapper"></div>
-    <script data-main="/a/application.js" src="/a/require.js"></script>
+    <script src="/a/application.js"></script>
   </body>
 </html>}
     end
