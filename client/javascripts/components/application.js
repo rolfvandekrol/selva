@@ -6,7 +6,7 @@ var Header = require('./header.js');
 var MainContent = require('./main-content.js');
 
 module.exports = React.createClass({
-  displayName: 'Appliction',
+  displayName: 'Application',
   render: function() {
     return (
       <div className="application">
