@@ -45,7 +45,6 @@ module Selva
     <title>Selva</title>
   </head>
   <body>
-    <div id="wrapper"></div>
     <script src="/a/application.js"></script>
   </body>
 </html>}

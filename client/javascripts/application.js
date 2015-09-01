@@ -7,5 +7,5 @@ var Application = require('./components/application.js');
 
 React.render(
   <Application />,
-  document.getElementById('wrapper')
+  document.body
 );
