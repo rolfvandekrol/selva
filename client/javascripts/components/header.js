@@ -4,6 +4,7 @@ var React = require('react');
 var Icon = require('./icon.js');
 
 var Search = React.createClass({
+  displayName: 'HeaderSearch',
   render: function() {
     return (
       <div className="header-search">
@@ -17,6 +18,7 @@ var Search = React.createClass({
 });
 
 module.exports = React.createClass({
+  displayName: 'Header',
   render: function() {
     return (
       <div className="header">
