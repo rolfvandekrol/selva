@@ -1,11 +1,21 @@
 
-.gems
-
+# Ruby and Node.js version configuration
 .ruby-version
 .rbenv-gemsets
+.node-version
 
+# Ruby and NPM packages
+.gems
+node_modules
+
+# Generated files
+client/dist
+
+# Configuration
 config/database.yml
 
+# Logging
 log/*.log
 
+# Project files
 *.sublime-*
