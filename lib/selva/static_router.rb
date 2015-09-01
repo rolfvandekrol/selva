@@ -1,9 +1,5 @@
 require 'rack/request'
 
-require 'sprockets'
-require 'react-jsx-sprockets'
-require 'sass'
-
 module Selva
   class StaticRouter
     # We route the request using regular expressions.
@@ -11,25 +7,14 @@ module Selva
       # Serve the homepage as a normal page
       /^\/$/ => :serve_page,
 
-      # All assets are located on /a/. For safety, we only accept dots in the
-      # path when it is surrounded by letters, numbers or underscores.
-      /^\/a(\/([a-z0-9\-]|[a-z0-9\-]\.[a-z0-9\-])+)+$/ => :serve_asset,
-
       # User generated pages are located on /u/.
       /^\/u\// => :serve_page,
     }
 
-    attr_reader :server, :sprockets_environment
+    attr_reader :server
 
     def initialize(server)
       @server = server
-
-      @sprockets_environment = Sprockets::Environment.new(server.root)
-      @sprockets_environment.append_path('assets/javascripts')
-      @sprockets_environment.append_path('assets/stylesheets')
-      @sprockets_environment.append_path('vendor/react')
-      @sprockets_environment.append_path('vendor/font-awesome/fonts')
-      @sprockets_environment.append_path('vendor/requirejs')
     end
 
     def call(env)
@@ -64,35 +49,6 @@ module Selva
     <script src="/a/application.js"></script>
   </body>
 </html>}
-    end
-
-    def serve_asset(request)
-      path = Rack::Utils.unescape(request.path_info.to_s.sub(/^\/a\//, ''))
-      asset = sprockets_environment[path]
-
-      return serve_not_found(request) if asset.nil?
-
-      headers = {}
-
-      # Set content length header
-      headers["Content-Length"] = asset.length.to_s
-
-      # Set content type header
-      if type = asset.content_type
-        # Set charset param for text/* mime types
-        if type.start_with?("text/") && asset.charset
-          type += "; charset=#{asset.charset}"
-        end
-        headers["Content-Type"] = type
-      end
-
-      # Set caching headers
-      headers["Cache-Control"] = "public"
-      headers["ETag"]          = %("#{asset.etag}")
-      headers["Cache-Control"] << ", must-revalidate"
-      headers["Vary"] = "Accept-Encoding"
-
-      [ 200, headers, asset ]
     end
 
     def serve_not_found(request)
