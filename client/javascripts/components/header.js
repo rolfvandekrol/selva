@@ -39,12 +39,24 @@ var Search = React.createClass({
   }
 });
 
+var Buttons = React.createClass({
+  displayName: 'HeaderButtons',
+  render: function() {
+    return (
+      <div className="header-buttons">
+        <button className="header-buttons-logout"><Icon icon="sign-out" /></button>
+      </div>
+    );
+  }
+});
+
 module.exports = React.createClass({
   displayName: 'Header',
   render: function() {
     return (
       <div className="header">
         <Search />
+        <Buttons />
       </div>
     );
   }
