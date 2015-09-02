@@ -10,18 +10,20 @@ like the name.
 ## Tech
 
 *   **RethinkDB**
-    
+
     Why? Because it's cool, and new, and supports having a listener for updates.
 *   **Ruby**
-    
-    Why? Because I love the language
+
+    Why? Because I love the language. The code is optimized for Rubinius,
+    because Rubinius supports multi-threading on multiple cores.
 *   **No Rails**
 
     Why not? Because I have some ideas about routing that would be a hell to 
     implement in Rails. And I like to see what be a achieved without Rails. I'll
     probably use some parts of Rails, like ActiveSupport
-*   Something fancy on the frontend. Might be React.
-*   Optimized for Rubinius.
+*   **React & Webpack**
+
+    Frontend is build using React and generated using Webpack.
 
 ## Technical notes
 
