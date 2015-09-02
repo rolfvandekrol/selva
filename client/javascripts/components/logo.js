@@ -6,6 +6,7 @@ module.exports = React.createClass({
   displayName: 'Logo',
   render: function() {
     return (
+<div className="logo-app-name">
 <div className="logo">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
   viewBox="0 0 232.928 218.682" preserveAspectRatio="xMidYMid slice">
@@ -118,6 +119,8 @@ module.exports = React.createClass({
         C81.221,57.666,79.321,56.021,78.096,56.018z"/>
 </g>
 </svg>
+</div>
+<h1 className="app-title">Selva</h1>
 </div>
     );
   }
