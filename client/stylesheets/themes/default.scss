@@ -58,3 +58,11 @@ body {
     }
   }
 }
+
+.header-buttons {
+  border-left: 1px solid $color-border;
+
+  button:before {
+    background-color: $color-border;
+  }
+}
