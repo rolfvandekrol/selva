@@ -27,6 +27,12 @@ body {
       fill: $color-text-sidebar;
     }
   }
+
+  .sidebar-collapse-button {
+    button {
+      background: $color-sidebar;
+    }
+  }
 }
 
 .main-content {

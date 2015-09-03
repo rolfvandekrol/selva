@@ -32,6 +32,7 @@ html, body {
   left: 0;
   top: 0;
   bottom: 0;
+  z-index: 50;
 
   .logo-app-name {
     margin-top: 20px;
@@ -50,6 +51,32 @@ html, body {
       line-height: 1.5em;
     }
   }
+
+  .sidebar-collapse-button {
+    position: absolute;
+    width: 34px;
+    height: 39px;
+    background: transparent;
+    border: 0;
+    top: 5px;
+    left: 220px; //  - 39px;
+    z-index: 55;
+
+    button {
+      display: block;
+      position: absolute;
+      background: transparent;
+      border: 0;
+      outline: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      top: 0;
+      bottom: 0;
+      border-radius: 0 10px 10px 0;
+    }
+
+  }
 }
 
 .header {
@@ -60,6 +87,7 @@ html, body {
   height: 49px;
   border-bottom: 1px solid transparent;
   display: flex;
+  z-index: 40;
 }
 
 .content-block {
