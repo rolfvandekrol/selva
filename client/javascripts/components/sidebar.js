@@ -3,7 +3,10 @@ var React = require('react');
 
 var Icon = require('./icon.js');
 var Logo = require('./logo.js');
+var Menu = require('./menu.js');
+
 var SidebarCollapseStore = require('../stores/sidebar_collapse_store.js');
+var SidebarActionCreators = require('../action_creators/sidebar.js');
 
 var getStateFromStore = function() {
   return {
@@ -18,16 +21,40 @@ var setBodyAttribute = function(state) {
 var CollapseButton = React.createClass({
   displayName: 'SidebarCollapseButton',
 
+  getInitialState: function() {
+    return getStateFromStore();
+  },
+
   render: function() {
-    return (
-      <div className="sidebar-collapse-button">
-        <button onClick={this.handleClick}><Icon icon="caret-left" /></button>
-      </div>
-    )
+    if (this.state.state == 'open') {
+      return (
+        <div className="sidebar-collapse-button">
+          <button onClick={this.handleClick}><Icon icon="caret-left" /></button>
+        </div>
+      );
+    } else {
+      return (
+        <div className="sidebar-collapse-button">
+          <button onClick={this.handleClick}><Icon icon="navicon" /></button>
+        </div>
+      );
+    }
   },
 
   handleClick: function(e) {
     e.preventDefault();
+    SidebarActionCreators.switch();
+  },
+
+  componentDidMount: function() {
+    SidebarCollapseStore.addListener(this._onSwitch);
+  },
+  componentWillUnmount: function() {
+    SidebarCollapseStore.removeListener(this._onSwitch);
+  },
+
+  _onSwitch: function() {
+    this.setState(getStateFromStore());
   }
 });
 
@@ -40,6 +67,13 @@ module.exports = React.createClass({
 
   componentDidMount: function() {
     setBodyAttribute(this.state.state);
+    SidebarCollapseStore.addListener(this._onSwitch);
+  },
+  componentWillUnmount: function() {
+    SidebarCollapseStore.removeListener(this._onSwitch);
+  },
+  componentDidUpdate: function() {
+    setBodyAttribute(this.state.state);
   },
 
   render: function() {
@@ -47,7 +81,12 @@ module.exports = React.createClass({
       <div className="sidebar">
         <CollapseButton />
         <Logo />
+        <Menu />
       </div>
     );
+  },
+
+  _onSwitch: function() {
+    this.setState(getStateFromStore());
   }
 });

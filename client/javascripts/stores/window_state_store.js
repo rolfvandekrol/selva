@@ -8,11 +8,7 @@ var emitter = new fbemitter.EventEmitter();
 
 var EVENT_NAME = 'switch';
 
-var state = 'default';
-var mapping = {
-  'open': 'closed',
-  'closed': 'open',
-};
+var state = null;
 
 module.exports = {
   addListener: function(callback) {
@@ -28,16 +24,6 @@ module.exports = {
     return state;
   },
 
-  open: function() {
-    this.setState('open');
-  },
-  close: function() {
-    this.setState('closed');
-  },
-  switch: function() {
-    this.setState(mapping[state]);
-  },
-
   setState: function(new_state) {
     if (new_state != state) {
       state = new_state;
@@ -48,15 +34,8 @@ module.exports = {
 
 module.exports.dispatchToken = Dispatcher.register(function(action) {
   switch(action.type) {
-    case Constants.ActionTypes.SIDEBAR_SWITCH:
-      module.exports.switch();
-      break;
     case Constants.ActionTypes.WINDOW_STATE_SWITCH:
-      if (action.state == 'desktop') {
-        module.exports.open();
-      } else {
-        module.exports.close();
-      }
+      module.exports.setState(action.state);
       break;
   }
 });

@@ -1,0 +1,79 @@
+
+.sidebar {
+  width: 0;
+  height: 100%;
+
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  
+  z-index: 50;
+
+  @include transition(width);
+
+  .logo-app-name {
+    width: $sidebar-width;
+    position: relative;
+    left: -1 * $sidebar-width;
+    display: flex;
+    padding: 10px;
+    overflow: hidden;
+
+    @include transition(left);
+
+    .logo {
+      width: 50px;
+      padding-right: 10px;
+    }
+
+    h1 {
+      display: block;
+      flex-grow: 1;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 700;
+      margin: 0;
+      font-size: 1.5em;
+      line-height: 1.5em;
+    }
+  }
+
+  .sidebar-collapse-button {
+    position: absolute;
+    width: 34px;
+    height: 39px;
+    background: transparent;
+    border: 0;
+    top: 5px;
+    left: 0;
+    z-index: 55;
+
+    @include transition(left);
+
+    button {
+      display: block;
+      position: absolute;
+      background: transparent;
+      border: 0;
+      outline: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      top: 0;
+      bottom: 0;
+      border-radius: 0 10px 10px 0;
+    }
+  }
+
+  [data-sidebar-state=open] & {
+    width: $sidebar-width;
+
+    .logo-app-name {
+      left: 0;
+    }
+
+    .sidebar-collapse-button {
+      left: $sidebar-width - 39px;
+    }
+  }
+}

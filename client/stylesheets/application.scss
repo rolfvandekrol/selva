@@ -4,164 +4,23 @@
 @import 'normalize.css';
 @import '~font-awesome/css/font-awesome.css';
 
-html {
-  box-sizing: border-box;
-}
-* {
-  box-sizing: inherit;
-}
+@import 'mixins';
 
-html, body {
-  height: 100%;
-  width: 100%;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 22px;
-}
+@import 'application/variables';
+@import 'application/base';
+@import 'application/sidebar';
+@import 'application/header';
+@import 'application/content';
 
-.application {
-  width: 100%;
-  height: 100%;
+
+@media only screen and (min-width: 768px) {
+  @import "application/min-0768/sidebar";
+  @import "application/min-0768/header";
+  @import "application/min-0768/content";
 }
 
-.sidebar {
-  position: fixed;
-  width: 220px;
-  height: 100%;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 50;
-
-  .logo-app-name {
-    margin-top: 20px;
-
-    .logo {
-      width: 100px;
-      margin: 0 auto;
-    }
-
-    h1 {
-      text-align: center;
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 700;
-      margin: 0;
-      font-size: 1.5em;
-      line-height: 1.5em;
-    }
-  }
-
-  .sidebar-collapse-button {
-    position: absolute;
-    width: 34px;
-    height: 39px;
-    background: transparent;
-    border: 0;
-    top: 5px;
-    left: 220px; //  - 39px;
-    z-index: 55;
-
-    button {
-      display: block;
-      position: absolute;
-      background: transparent;
-      border: 0;
-      outline: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      top: 0;
-      bottom: 0;
-      border-radius: 0 10px 10px 0;
-    }
-
-  }
-}
-
-.header {
-  position: fixed;
-  left: 220px;
-  right: 0;
-  top: 0;
-  height: 49px;
-  border-bottom: 1px solid transparent;
-  display: flex;
-  z-index: 40;
-}
-
-.content-block {
-  margin: 25px;
-  padding: 20px;
-}
-
-.main-content {
-  padding: 50px 0 10px 220px;
-  min-height: 100%;
-}
-
-.header button {
-  background: transparent;
-  border: none;
-  outline: none;
-}
-
-.header-search {
-  flex-grow: 1;
-
-  form {
-    display: flex;
-  }
-
-  input {
-    background: transparent;
-    border: 0;
-    outline: none;
-    height: 49px;
-    padding: 6px 0;
-    flex-grow: 1;
-  }
-
-  .header-search-active {
-    width: 45px;
-    text-align: center;
-    padding-right: 5px;
-    padding-left: 25px;
-  }
-
-  .header-search-empty {
-    padding-left: 5px;
-    padding-right: 15px;
-    text-align: left;
-  }
-}
-
-.header-buttons {
-  display: flex;
-  button {
-    display: block;
-    position: relative;
-    border-left: 1px solid transparent;
-    width: 45px;
-    text-align: center;
-    height: 49px;
-    line-height: 45px;
-
-    &:before {
-      content: '';
-      height: 49px;
-      width: 45px;
-      background-color: red;
-      position: absolute;
-      top: -49px;
-      right: 0;
-      z-index: -100;
-      -webkit-transition: top 0.1s;
-      transition: top 0.1s;
-    }
-
-    &:hover:before {
-      top: 0;
-    }
-  }
+@media only screen and (min-width: 1024px) {
+  @import "application/min-1024/sidebar";
+  @import "application/min-1024/header";
+  @import "application/min-1024/content";
 }

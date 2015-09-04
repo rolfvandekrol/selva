@@ -1,0 +1,8 @@
+
+.sidebar {
+  width: $sidebar-width;
+
+  [data-sidebar-state=closed] & {
+    width: $sidebar-icon-width;
+  }
+}

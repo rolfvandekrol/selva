@@ -1,0 +1,7 @@
+.main-content {
+  padding-left: $sidebar-width;
+
+  [data-sidebar-state=closed] & {
+    padding-left: $sidebar-icon-width;
+  }
+}

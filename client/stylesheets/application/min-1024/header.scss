@@ -1,0 +1,7 @@
+.header {
+  left: $sidebar-width;
+
+  [data-sidebar-state=closed] & {
+    left: $sidebar-icon-width;
+  }
+}

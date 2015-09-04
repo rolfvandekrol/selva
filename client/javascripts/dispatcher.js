@@ -1,7 +1,4 @@
 
-define(
-  ['flux'],
-  function(Flux) {
-    return new Flux.Dispatcher();
-  }
-);
+var Flux = require('Flux');
+
+module.exports = new Flux.Dispatcher();

@@ -1,0 +1,11 @@
+.content-block {
+  margin: 25px;
+  padding: 20px;
+}
+
+.main-content {
+  padding: 50px 0 10px 0;
+  min-height: 100%;
+
+  @include transition(padding-left);
+}

@@ -1,0 +1,13 @@
+
+@mixin transition($transitions...) {
+  $length: 1s;
+
+  $result: ();
+
+  @each $property in $transitions {
+    $result: append($result, ($property $length), comma);
+  }
+
+  -webkit-transition: $result;
+  transition: $result;
+}
