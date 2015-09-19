@@ -1,78 +1,85 @@
+
+$header-border-height: 1px;
+$header-inner-height: $header-height - $header-border-height;
+
+$header-button-width: $header-height;
+$header-button-border-width: 1px;
+$header-button-inner-width: $header-button-width - $header-button-border-width;
+
 .header {
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
-  height: 49px;
-  border-bottom: 1px solid transparent;
+  height: $header-height;
+  border-bottom: $header-border-height solid transparent;
   display: flex;
   z-index: 40;
 
-  @include transition(left);
-}
+  @include simple-transition(left);
 
-.header button {
-  background: transparent;
-  border: none;
-  outline: none;
-}
-
-.header-search {
-  flex-grow: 1;
-
-  form {
-    display: flex;
-  }
-
-  input {
-    background: transparent;
-    border: 0;
-    outline: none;
-    height: 49px;
-    padding: 6px 0;
-    flex-grow: 1;
-  }
-
-  .header-search-active {
-    width: 45px;
-    text-align: center;
-    padding-right: 5px;
-    padding-left: 25px;
-  }
-
-  .header-search-empty {
-    padding-left: 5px;
-    padding-right: 15px;
-    text-align: left;
-  }
-}
-
-.header-buttons {
-  display: flex;
   button {
-    display: block;
-    position: relative;
-    border-left: 1px solid transparent;
-    width: 45px;
-    text-align: center;
-    height: 49px;
-    line-height: 45px;
+    background: transparent;
+    border: none;
+    outline: none;
+  }
 
-    &:before {
-      content: '';
-      height: 49px;
-      width: 45px;
-      background-color: red;
-      position: absolute;
-      top: -49px;
-      right: 0;
-      z-index: -100;
-      -webkit-transition: top 0.1s;
-      transition: top 0.1s;
+  .header-search {
+    flex-grow: 1;
+
+    form {
+      display: flex;
     }
 
-    &:hover:before {
-      top: 0;
+    input {
+      background: transparent;
+      border: 0;
+      outline: none;
+      height: $header-inner-height;
+      padding: 6px 0;
+      flex-grow: 1;
+    }
+
+    .header-search-active {
+      width: 45px;
+      text-align: center;
+      padding-right: 5px;
+      padding-left: 25px;
+    }
+
+    .header-search-empty {
+      padding-left: 5px;
+      padding-right: 15px;
+      text-align: left;
+    }
+  }
+
+  .header-buttons {
+    display: flex;
+    button {
+      display: block;
+      position: relative;
+      border-left: 1px solid transparent;
+      width: $header-button-width;
+      text-align: center;
+      height: $header-inner-height;
+      line-height: $header-inner-height;
+
+      &:before {
+        content: '';
+        height: $header-inner-height;
+        width: $header-button-inner-width;
+        position: absolute;
+        top: -1 * $header-inner-height;
+        right: 0;
+        z-index: -100;
+        
+        @include simple-transition(top);
+      }
+
+      &:hover:before {
+        top: 0;
+      }
     }
   }
 }

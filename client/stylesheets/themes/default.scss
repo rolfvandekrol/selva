@@ -1,6 +1,7 @@
 
 $color-background: #f3f3f4;
 $color-sidebar: #2f4050;
+$color-sidebar-dark: #293846;
 $color-border: #e7eaec;
 $color-white: #ffffff;
 
@@ -13,14 +14,13 @@ body {
   color: $color-text;
 }
 
-.header {
-  border-bottom: 1px solid $color-border;
-  background: $color-background;
-}
-
 .sidebar {
   background: $color-sidebar;
   color: $color-text-sidebar;
+
+  .logo-app-name {
+    background: $color-sidebar-dark;
+  }
 
   .logo {
     path {
@@ -28,9 +28,17 @@ body {
     }
   }
 
+  .menu {
+    ul li {
+      i.fa {
+        background: $color-sidebar;
+      }
+    }
+  }
+
   .sidebar-collapse-button {
     button {
-      background: $color-sidebar;
+      background: $color-sidebar-dark;
     }
   }
 }
@@ -44,31 +52,36 @@ body {
   border-top: 4px solid $color-border;
 }
 
-.header-search {
-  input {
-    color: $color-text;
+.header {
+  border-bottom: 1px solid $color-border;
+  background: $color-background;
 
-    &::-webkit-input-placeholder {
-      color: $color-text-light;
-    }
-    &:-moz-placeholder {
-      color: $color-text-light;
-      opacity: 1;
-    }
-    &::-moz-placeholder {
-      color: $color-text-light;
-      opacity: 1;
-    }
-    &:-ms-input-placeholder {
-      color: $color-text-light;
+  .header-search {
+    input {
+      color: $color-text;
+
+      &::-webkit-input-placeholder {
+        color: $color-text-light;
+      }
+      &:-moz-placeholder {
+        color: $color-text-light;
+        opacity: 1;
+      }
+      &::-moz-placeholder {
+        color: $color-text-light;
+        opacity: 1;
+      }
+      &:-ms-input-placeholder {
+        color: $color-text-light;
+      }
     }
   }
-}
 
-.header-buttons {
-  border-left: 1px solid $color-border;
+  .header-buttons {
+    border-left: 1px solid $color-border;
 
-  button:before {
-    background-color: $color-border;
+    button:before {
+      background-color: $color-border;
+    }
   }
 }

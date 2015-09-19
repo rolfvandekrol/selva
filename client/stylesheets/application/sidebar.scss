@@ -1,29 +1,35 @@
 
+$sidebar-header-height: $header-height;
+$sidebar-menu-item-height: 30px;
+
 .sidebar {
   width: 0;
   height: 100%;
 
   position: fixed;
   left: 0;
-  top: 0;
-  bottom: 0;
+  top: 0; bottom: 0;
   
   z-index: 50;
 
-  @include transition(width);
+  @include simple-transition(width);
 
   .logo-app-name {
+    height: $sidebar-header-height;
     width: $sidebar-width;
-    position: relative;
-    left: -1 * $sidebar-width;
+
     display: flex;
+
+    position: absolute;
+    right: 0;
+    
     padding: 10px;
     overflow: hidden;
 
-    @include transition(left);
+    @include simple-transition(left);
 
     .logo {
-      width: 50px;
+      width: 42px;
       padding-right: 10px;
     }
 
@@ -48,7 +54,7 @@
     left: 0;
     z-index: 55;
 
-    @include transition(left);
+    @include simple-transition(left);
 
     button {
       display: block;
@@ -65,12 +71,50 @@
     }
   }
 
-  [data-sidebar-state=open] & {
+  .menu {
+    position: absolute;
+    right: 0;
+    top: $sidebar-header-height;
     width: $sidebar-width;
 
-    .logo-app-name {
-      left: 0;
+    ul {
+      padding: 0;
+      list-style: none;
+      width: 100%;
+
+      li {
+        width: 100%;
+        height: $sidebar-menu-item-height;
+        position: relative;
+        overflow: hidden;
+
+        i.fa {
+          display: block;
+          position: absolute;
+          left: 0; top: 0;
+          width: $sidebar-icon-width;
+          height: $sidebar-menu-item-height;
+          line-height: $sidebar-menu-item-height;
+          text-align: center;
+          z-index: 1;
+        }
+
+        span {
+          z-index: 0;
+          display: block;
+          position: absolute;
+          right: 0; top: 0;
+          width: $sidebar-width;
+          height: $sidebar-menu-item-height;
+          padding-left: $sidebar-icon-width;
+          line-height: $sidebar-menu-item-height;
+        }
+      }
     }
+  }
+
+  [data-sidebar-state=open] & {
+    width: $sidebar-width;
 
     .sidebar-collapse-button {
       left: $sidebar-width - 39px;
