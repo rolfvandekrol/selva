@@ -9,7 +9,7 @@
 node_modules
 
 # Generated files
-client/dist
+app/client/dist
 
 # Configuration
 config/database.yml

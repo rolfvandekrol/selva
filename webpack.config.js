@@ -1,9 +1,9 @@
 module.exports = {
   entry: {
-    application: "./client/javascripts/application.js",
+    application: "./app/client/javascripts/application.js",
   },
   output: {
-    path: __dirname + '/client/dist',
+    path: __dirname + 'app/client/dist',
     filename: "[name].js",
     publicPath: "/a/"
   },
