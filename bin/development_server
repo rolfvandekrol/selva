@@ -1,0 +1,39 @@
+#!/usr/bin/env node
+
+var child_process = require('child_process');
+var path = require('path')
+
+var root_path = path.normalize(__dirname + '/..');
+
+
+webpack = child_process.spawn('npm', ['run', 'watch_assets'], {
+  cwd: root_path
+});
+
+webpack.stdout.on('data', function (data) {
+  console.log('stdout: ' + data);
+});
+
+webpack.stderr.on('data', function (data) {
+  console.log('stderr: ' + data);
+});
+
+webpack.on('close', function (code) {
+  console.log('child process exited with code ' + code);
+});
+
+server = child_process.spawn('npm', ['run', 'server'], {
+  cwd: root_path
+});
+
+server.stdout.on('data', function (data) {
+  console.log('stdout: ' + data);
+});
+
+server.stderr.on('data', function (data) {
+  console.log('stderr: ' + data);
+});
+
+server.on('close', function (code) {
+  console.log('child process exited with code ' + code);
+});
