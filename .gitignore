@@ -16,6 +16,7 @@ config/database.yml
 
 # Logging
 log/*.log
+npm-debug.log
 
 # Project files
 *.sublime-*
