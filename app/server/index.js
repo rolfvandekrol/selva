@@ -4,7 +4,10 @@ var path = require('path');
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
-var io = require('socket.io')(server, { serveClient: false });
+var io = require('socket.io')(server, { 
+  serveClient: false, 
+  path: '/s' 
+});
 
 var root_path = path.normalize(__dirname + '/../..');
 var client_path = root_path + '/app/client';
