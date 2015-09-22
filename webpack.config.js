@@ -3,7 +3,7 @@ module.exports = {
     application: "./app/client/javascripts/application.js",
   },
   output: {
-    path: __dirname + 'app/client/dist',
+    path: __dirname + '/app/client/dist',
     filename: "[name].js",
     publicPath: "/a/"
   },
