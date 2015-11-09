@@ -1,39 +1,32 @@
 #!/usr/bin/env node
 
 var child_process = require('child_process');
-var path = require('path')
+var path = require('path');
+var _ = require('underscore');
 
 var root_path = path.normalize(__dirname + '/..');
 
+var processes = [
+  'watch_assets',
+  'server'
+];
 
-webpack = child_process.spawn('npm', ['run', 'watch_assets'], {
-  cwd: root_path
-});
+_.each(processes, function(proc_name) {
+  var proc;
 
-webpack.stdout.on('data', function (data) {
-  console.log('stdout: ' + data);
-});
+  proc = child_process.spawn('npm', ['run', proc_name], {
+    cwd: root_path
+  });
 
-webpack.stderr.on('data', function (data) {
-  console.log('stderr: ' + data);
-});
+  proc.stdout.on('data', function (data) {
+    console.log('stdout: ' + data);
+  });
 
-webpack.on('close', function (code) {
-  console.log('child process exited with code ' + code);
-});
+  proc.stderr.on('data', function (data) {
+    console.log('stderr: ' + data);
+  });
 
-server = child_process.spawn('npm', ['run', 'server'], {
-  cwd: root_path
-});
-
-server.stdout.on('data', function (data) {
-  console.log('stdout: ' + data);
-});
-
-server.stderr.on('data', function (data) {
-  console.log('stderr: ' + data);
-});
-
-server.on('close', function (code) {
-  console.log('child process exited with code ' + code);
+  proc.on('close', function (code) {
+    console.log('child process exited with code ' + code);
+  });
 });
