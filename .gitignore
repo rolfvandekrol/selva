@@ -1,22 +1,22 @@
 
 # Ruby and Node.js version configuration
-.ruby-version
-.rbenv-gemsets
-.node-version
+/.ruby-version
+/.rbenv-gemsets
+/.node-version
 
 # Ruby and NPM packages
-.gems
-node_modules
+/.gems
+/node_modules
 
 # Generated files
-app/client/dist
+/app/client/dist
 
 # Configuration
-config/database.yml
+/config/database.yml
 
 # Logging
-log/*.log
-npm-debug.log
+/log/*.log
+/npm-debug.log
 
 # Project files
-*.sublime-*
+/*.sublime-*
